@@ -1,0 +1,37 @@
+[
+    {
+        "id": "1",
+        "nombre": "Tomógrafo",
+        "reinicio":"14/02/2024",
+        "tecnico":"Lijó",
+        "reporte":"",
+        "caso":"",
+        "descripcion":"",
+        "telefono": "0800-444-2411",
+        "serie":"884521"
+    },
+
+    {
+        "id": "2",
+        "nombre": "Bomba de Contraste",
+        "reinicio":"",
+        "tecnico":"",
+        "reporte":"10/02/2024",
+        "caso":"14578fgh",
+        "descripcion":"Falla en la pantalla de la bomba",
+        "telefono": "0800-444-2411",
+        "serie":"884521"
+    },
+
+    {
+        "id": "3",
+        "nombre": "Impersora Laser",
+        "reinicio":"",
+        "tecnico":"",
+        "reporte":"",
+        "caso":"",
+        "descripcion":"",
+        "telefono": "0800-444-2411",
+        "serie":"884521"
+    }
+]

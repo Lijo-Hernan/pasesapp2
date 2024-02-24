@@ -1,0 +1,46 @@
+[
+    {
+        "id":"1",
+        "nombre":"Contraste Endovenoso",
+        "stock":19,
+        "presentacion":"Frascos",
+        "minimo": 20,
+        "maximo": 50
+    },
+    
+    {
+        "id":"2",
+        "nombre":"Contraste Oral",
+        "stock": 8 ,
+        "presentacion":"Frascos",
+        "minimo": 8 ,
+        "maximo": 20 
+    },
+
+    {
+        "id":"3",
+        "nombre":"Cds",
+        "stock": 50 ,
+        "presentacion":"Unidades",
+        "minimo": 20 ,
+        "maximo":100
+    },
+
+    {
+        "id":"4",
+        "nombre":"Sobres",
+        "stock": 2 ,
+        "presentacion":"Paquetes",
+        "minimo": 1 ,
+        "maximo": 2 
+    },
+
+    {
+        "id":"5",
+        "nombre":"Placas",
+        "stock": 4 ,
+        "presentacion":"Cartuchos",
+        "minimo": 2 ,
+        "maximo": 4 
+    }
+]

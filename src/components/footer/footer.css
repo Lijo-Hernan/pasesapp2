@@ -1,0 +1,24 @@
+.footer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: rgb(253, 242, 33);
+    color: black;
+    border-top: 2px solid black;
+    /* position: fixed; */
+    /* bottom: 0 */
+}
+
+.footer__title {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+}
+
+.footer__img {
+    display: flex;
+    max-height: 100%;
+    width: auto;
+}
+
