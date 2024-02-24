@@ -1,0 +1,32 @@
+.detailContainer {
+    display: flex;
+    width: auto;
+    align-items: center;
+    margin: 0.5vh;
+    overflow: hidden;
+}
+
+.detailContainer__card {
+    display: flex;
+    flex-direction: column;
+    padding: 3vh;
+    align-items: first baseline;
+    background-color:  #3f3f3f;
+    color: white;
+    border-radius: 25px;
+    min-height: 40vh;
+    width: 100%;
+    margin: 1vh;
+    position: relative;
+    flex-wrap: wrap;
+    border: red solid 3px;
+}
+
+@media (max-width: 768px) {
+    .detailContainer__card {
+        display: flex;
+        flex-direction: row;
+    }
+
+
+}

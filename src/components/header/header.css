@@ -30,3 +30,9 @@
     width: auto;
 }
 
+@media (max-width: 910px) {
+    .header__title {
+        display: none;
+    }
+}
+

@@ -1,0 +1,66 @@
+.detail__card {
+    width: 95%;
+    margin-left: 1vw;
+}
+.seccionDatos {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-size: 2.5rem;
+    align-items: first baseline;
+}
+.datosServicio {
+    display: flex;
+    flex-direction: column;
+    justify-self: right;
+    max-width: 40%;
+    font-size: 1.5rem;
+}
+.datos__titulo {
+    border-bottom: white solid 2px;
+    margin-bottom: 3rem;
+}
+.datos__p {
+    font-size: 2rem;
+}
+
+input,
+textarea {
+    font-family: inherit;
+    font-size: 70%;
+}
+.datos__boton {
+    width: 60%;
+    font-family: inherit;
+    font-size: 70%;
+    align-self: center;
+    cursor: pointer;
+}
+.item__titulo {
+    border-bottom: solid 2px white;
+    width: 100%;
+    justify-self: center;
+    margin-bottom: 2rem;
+}
+.checkbox{
+    height: 2rem;
+    width: 2rem;
+    margin-left: 1rem;
+}
+@media (max-width: 910px) {
+    .seccionDatos {
+        flex-direction: column;
+    }
+    .datosServicio{
+        width: 100%;
+        max-width: none;
+        margin-top: 2rem;
+    }
+
+}

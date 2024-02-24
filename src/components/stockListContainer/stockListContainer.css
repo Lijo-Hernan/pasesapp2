@@ -1,0 +1,61 @@
+.stockContainer {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    padding: 3vh;
+    gap: 1.5vh;
+    align-items: first baseline;
+    justify-content: center;
+    background-color:  #3f3f3f;
+    color: white;
+    border-radius: 25px;
+    width: auto;
+    margin: 1vh;
+    overflow: hidden;
+    width: 90%;
+}
+
+.stockContainer__intro {
+    border-bottom: solid white 2px;
+    justify-self: center;
+    width: 100%;
+}
+
+.stockListContainer {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    width: auto;
+    font-size: 1.5rem;
+    justify-content: space-between;
+}
+
+.stockItem__card {
+    display: flex;
+    width: auto;
+    min-width: 48%;
+    align-content: center;
+    border: white solid 2px;
+    border-radius: 5px;
+}
+
+.stockItem__titulo {
+    padding-left: 15px;
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+.stockNumber {
+    font-size: 2rem;
+    padding: 4px;
+    font-style: bold;
+}
+
+.imagenParaMostrar {
+    object-fit: contain;
+    margin-left:  2vh;
+    margin-right: 2vh;
+    height: 5vh;
+    align-self: center;
+    justify-self: center;
+}
