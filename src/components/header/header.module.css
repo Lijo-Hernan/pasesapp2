@@ -7,21 +7,13 @@
     border-bottom: 2px solid black;
     margin-bottom: 2vh;
     position: relative;
+    justify-content: center;
+
 }
 
-.header__title {
-    display: flex;
-    justify-self: center;
-    align-self: center;
-    flex-direction: column;
+.header__link {
+    height: 100%;
     width: 100%;
-    font-size: larger;
-    position: absolute;
-}
-.header__cont {
-    display: flex;
-    width: 10%;
-    justify-self: left;
 }
 
 .header__img {
@@ -29,6 +21,22 @@
     max-height: 100%;
     width: auto;
 }
+.header__title {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: larger;
+    position: absolute;
+}
+.header__h1 {
+    height: 80%;
+    width: fit-content;
+    align-self: center;
+    font-size: 2rem;
+}
+
 
 @media (max-width: 910px) {
     .header__title {
