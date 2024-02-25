@@ -2,6 +2,7 @@ import React from 'react';
 import ItemReporte from '../itemReporte/ItemReporte'
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './item.module.css'
+import { Link } from 'react-router-dom';
 
 const Item = ({equipo}) => {
 
@@ -20,12 +21,12 @@ const Item = ({equipo}) => {
             <h2 className={classes.item__titulo}>{equipo.nombre}</h2>
                 {equipo.reporte === "" ?
                     <div className={classes.item__inner}>
-                        <button className='btn btn-danger'>Reportar un problema</button>
+                        <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
                         <span className={classes.item__span}>
                             <p className={classes.item__p}>Fecha de reinicio: {equipo.reinicio}</p>
                             <p className={classes.item__p}>Técnico: {equipo.tecnico}</p>
                         </span>
-                        <button className='btn btn-primary'>Reportar reincio</button>
+                        <Link to='' className='btn btn-primary'>Reportar reincio</Link>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>

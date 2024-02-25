@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './itemDetail.module.css';
 import {useForm} from "react-hook-form";
@@ -8,7 +8,7 @@ import {db} from '../firebase/config'
 const ItemDetail = ({eq}) => {
     
         const [apellido, setApellido] = useState('');
-    
+
         const handleChange = (event) => {
             const textoMayusculas = event.target.value.toUpperCase();
             setApellido(textoMayusculas);
@@ -16,7 +16,6 @@ const ItemDetail = ({eq}) => {
 
 
     const {register, formState:{errors}, handleSubmit, watch} = useForm();
-
 
     const reportado = watch('pregunta')
 
@@ -26,6 +25,7 @@ const ItemDetail = ({eq}) => {
         alert("Reporte enviado correctamente, muchas gracias" )
     }
 
+    console.log(eq)
 
     return (
 
@@ -53,19 +53,19 @@ const ItemDetail = ({eq}) => {
                     <input type="password" id='clave' {...register('clave', {required:true})} />
                     {errors.clave?.type === 'required' && <p>Este campo es obligatorio</p>}
                 </span>
-                <span>
+                {/* <span>
                     <label htmlFor="caso">Numbero de caso: </label>
                     <input type="text" id='caso' {...register('caso')}/>
-                </span>
-                {/* <span>
+                </span> */}
+                <span>
                     <label htmlFor="pregunta">Se reporto a servicio tencnico?</label>
                     <input type="checkbox" id="pregunta" {...register ('pregunta')} className={classes.checkbox}/>
-                </span>
+                </span> 
                 {reportado && (
                 <span>
                     <label htmlFor="caso">Numbero de caso: </label>
                     <input type="text" id='caso' {...register('caso')}/>
-                </span>)} */}
+                </span>)} 
                 <button type='submit' className={`btn btn-warning ${classes.datos__boton}`}>Enviar</button>
             </form>
                 <section className={classes.datosServicio}>

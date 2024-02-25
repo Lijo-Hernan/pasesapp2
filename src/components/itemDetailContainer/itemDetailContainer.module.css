@@ -19,7 +19,6 @@
     margin: 1vh;
     position: relative;
     flex-wrap: wrap;
-    border: red solid 3px;
 }
 
 @media (max-width: 768px) {

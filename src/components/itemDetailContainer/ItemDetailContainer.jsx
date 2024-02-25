@@ -9,20 +9,18 @@ const ItemDetailContainer = () => {
 
     const [eq, setEq]= useState (null); 
 
-    const {ideq} = useParams()
+    const {id} = useParams();
+
 
     useEffect (()=> {
         const fetchEquipos = collection(db, "equipos");
         getDocs (fetchEquipos)
         .then ((resp)=> {
-            setEq (
-                resp.docs.map ((doc) =>{
-                    return {...doc.data() , id: doc.id}
-                })
-            )
+            setEq(
+                {...resp.data, id: resp.id}
+                );
         }) 
-    },[ideq])
-    
+    },[id])
 
     return (
         <div>

@@ -4,7 +4,6 @@ import classes from './itemReporte.module.css'
 
 const ItemReporte = ({equipo}) => {
 
-    console.log(equipo)
 
     return (
         <div className = {classes.reporte}>
