@@ -26,7 +26,6 @@ const ItemDetail = ({eq}) => {
         alert("Reporte enviado correctamente, muchas gracias" )
     }
 
-
     return (
 
         <div className={classes.detail__card}>
