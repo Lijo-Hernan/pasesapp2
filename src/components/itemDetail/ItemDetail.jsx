@@ -5,27 +5,26 @@ import {useForm} from "react-hook-form";
 import {collection, addDoc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 
+
 const ItemDetail = ({eq}) => {
+    const [apellido, setApellido] = useState('');
     
-        const [apellido, setApellido] = useState('');
-
-        const handleChange = (event) => {
-            const textoMayusculas = event.target.value.toUpperCase();
-            setApellido(textoMayusculas);
-        };
+    const handleChange = (event) => {
+        const textoMayusculas = event.target.value.toUpperCase();
+        setApellido(textoMayusculas);
+    };
 
 
-    const {register, formState:{errors}, handleSubmit, watch} = useForm();
+const {register, formState:{errors}, handleSubmit, watch} = useForm();
 
-    const reportado = watch('pregunta')
 
-    const onSubmit = (datos)=> {
-        const reporte =collection (db,'reportes')
-        addDoc (reporte, datos);
-        alert("Reporte enviado correctamente, muchas gracias" )
-    }
+const reportado = watch('pregunta')
 
-    console.log(eq)
+const onSubmit = (datos)=> {
+    const reporte =collection (db,'reportes')
+    addDoc (reporte, datos);
+    alert("Reporte enviado correctamente, muchas gracias" )
+}
 
     return (
 
@@ -33,7 +32,11 @@ const ItemDetail = ({eq}) => {
                 <h2 className={classes.item__titulo}>Reporte de falla de {eq.nombre}</h2>
             <div className={classes.seccionDatos}>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-                    <span>
+                <span className={classes.inputEquipo}>
+                    <label htmlFor="equipo"></label>
+                    <input type="text" id='equipo'{...register('equipo')} defaultValue={eq.nombre} />
+                </span>
+                <span>
                     <label htmlFor="fecha">Fecha: </label>
                     <input type="date" id='fecha' {...register('fecha', {required:true})}/>
                     {errors.fecha?.type === 'required' && <p>Este campo es obligatorio</p>}
@@ -53,10 +56,6 @@ const ItemDetail = ({eq}) => {
                     <input type="password" id='clave' {...register('clave', {required:true})} />
                     {errors.clave?.type === 'required' && <p>Este campo es obligatorio</p>}
                 </span>
-                {/* <span>
-                    <label htmlFor="caso">Numbero de caso: </label>
-                    <input type="text" id='caso' {...register('caso')}/>
-                </span> */}
                 <span>
                     <label htmlFor="pregunta">Se reporto a servicio tencnico?</label>
                     <input type="checkbox" id="pregunta" {...register ('pregunta')} className={classes.checkbox}/>
