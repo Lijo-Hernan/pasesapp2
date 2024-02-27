@@ -3,6 +3,7 @@ import './stockListContainer.css'
 import StockList from '../stockList/StockList'
 import {collection, getDocs} from 'firebase/firestore'
 import {db} from '../firebase/config'
+import Loader from '../loader/Loader'
 
 const StockListContainer = () => {
 
@@ -24,7 +25,7 @@ const StockListContainer = () => {
         <div className='stockContainer'>
             <h1 className='stockContainer__intro'>Control de Stock</h1>
             <div className='stockCcontainer__card'>
-                {stocks.length == 0 ? <h3>Cargando...</h3> 
+                {stocks.length == 0 ? <Loader/> 
                 : 
                 <StockList stocks={stocks}/>}
             </div>

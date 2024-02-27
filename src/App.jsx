@@ -20,9 +20,7 @@ function App() {
         {/* <Route path='' element={}/> */}
 
     </Routes>
-    
-      {/* <ItemListContainer/>
-      <ItemDetailContainer/> */}
+       
       <Footer/>
     
     

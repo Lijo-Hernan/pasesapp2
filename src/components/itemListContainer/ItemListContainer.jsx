@@ -3,9 +3,11 @@ import {collection, getDocs} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import ItemList from '../itemList/ItemList';
 import classes from './itemListContainer.module.css'
+import Loader from '../loader/Loader'
 
 
-const ItemListContainer = ({intro}) => {
+
+const ItemListContainer = () => {
 
     const [equipos, setequipos]= useState ([]); 
 
@@ -26,7 +28,7 @@ const ItemListContainer = ({intro}) => {
     return (
         <div className={classes.container}>
             <div className={classes.container__card}>
-                {equipos.length == 0 ? <h3>Cargando...</h3> 
+                {equipos.length == 0 ? <Loader/> 
                 : 
                 <ItemList equipos={equipos}/>}
             </div>
