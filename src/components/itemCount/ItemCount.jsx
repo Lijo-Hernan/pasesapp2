@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
-import { BsCart3 } from "react-icons/bs";
 import classes from './itemCount.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
 const ItemCount = ({initial, stock, onAdd}) => {
 
-let [cuenta, setCuenta] = useState(initial)
+let [cuenta, setCuenta] = useState(25)
 
 const sube = () => {
-    if (cuenta < stock){
         setCuenta(cuenta +1)
-    }
 }
 const baja = () => {
-    if (cuenta > 1){
+    if (cuenta > 0){
         setCuenta(cuenta -1)
     }
 }
@@ -21,13 +18,12 @@ const baja = () => {
     return (
         <>
             <div className={classes.contador}>
-                <button className='btn btn-primary' onClick={baja} disabled={cuenta== initial}>-</button>
+                <button className='btn btn-primary' onClick={baja} >-</button>
                 <p className={classes.contador__p}>{cuenta}</p>
-                <button className='btn btn-primary' onClick={sube} disabled={cuenta==stock}>+</button>
+                <button className='btn btn-primary' onClick={sube} >+</button>
             </div>
             <div className={classes.cart__cont}>
-                <button className={`${classes.cart__boton} 'btn btn-primary'`} disabled={stock==0} onClick={()=>onAdd(cuenta)}><p className={classes.boton__p}>Agregar al carrito</p>
-                <BsCart3 className={classes.boton__img}/></button> 
+                <button className={`${classes.cart__boton} 'btn btn-primary'`} onClick={()=>onAdd(cuenta)}><p className={classes.boton__p}>Agregar al carrito</p></button> 
             </div>
         </>
     );

@@ -4,6 +4,7 @@ import Footer from './components/footer/Footer'
 import ItemListContainer from './components/itemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import ItemCount from './components/itemCount/ItemCount'
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         {/* <Route path='' element={}/> */}
 
     </Routes>
-       
+       <ItemCount/>
       <Footer/>
     
     
