@@ -68,8 +68,9 @@ const onSubmit = (datos)=> {
                 <button type='submit' className={`btn btn-warning ${classes.datos__boton}`}>Enviar</button>
             </form>
                 <section className={classes.datosServicio}>
-                    <h2 className={classes.datos__titulo}>Datos del eqiupo relevantes para solicitar servicio</h2>
+                    <h2 className={classes.datos__titulo}>Datos del eqiupo relevantes para solicitar servicio técnico</h2>
                     <p className={classes.datos__p}>Telefono de servicio tecnico: {eq.telefono}</p>
+                    <p className={classes.datos__p}>eMail: {eq.email}</p>
                     <p className={classes.datos__p}>Número de serie: {eq.serie}</p>
                 </section>
             </div>
