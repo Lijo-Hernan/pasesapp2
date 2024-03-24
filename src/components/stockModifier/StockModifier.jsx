@@ -35,13 +35,12 @@ const StockModifier = () => {
 
     const handleOnAdd = (cuenta) =>{
             setCantidad(cuenta)
-            console.log(`se actualizo a ${cuenta}`)
+            alert('El stock se modifico')
     } 
 
 
     return (
-        <div className={classes.stockContainer} >
-            <ToastContainer/>    
+        <div className={classes.stockContainer} >  
             {stockItem === null ? <Loader/> 
             : 
             <section>     
