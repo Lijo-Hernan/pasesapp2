@@ -8,7 +8,7 @@ const ItemList = ({stocks}) => {
             {stocks.map((stock)=> (
                 <StockItem 
                     key = {stock.id}
-                    stock ={stock}
+                    stock ={{...stock}}
                 />
             ))}
         </section>

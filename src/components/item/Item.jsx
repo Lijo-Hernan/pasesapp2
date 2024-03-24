@@ -9,9 +9,11 @@ const Item = ({equipo}) => {
     let estado;
 
     if (equipo.reporte === "" && equipo.descripcion === "") {
-        estado = <img className={classes.estado} src='../public/data/checkMark.png' alt='checkMark' />;
+        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/checkMark.png?alt=media&token=6146dce1-56c3-4eeb-9dc5-389099690f6d' 
+        alt='checkMark' />;
     }else {
-        estado = <img className={classes.estado} src='../public/data/xMArk.png' alt='xMArk' />;
+        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/xMark.png?alt=media&token=8144ca63-bdb0-40cc-98d6-8530def2715c' 
+        alt='xMArk' />;
     }
 
 
