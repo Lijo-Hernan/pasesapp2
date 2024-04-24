@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ItemCount from '../itemCount/ItemCount'
 import { useParams } from 'react-router-dom';
-import {doc, getDoc} from 'firebase/firestore'
+import {doc, getDoc, updateDoc, Timestamp} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import Loader from '../loader/Loader';
 import classes from './stockModifier.module.css'
@@ -16,8 +16,9 @@ const StockModifier = () => {
 
     const {idStock} = useParams();
 
+    const productDoc = doc(db, 'stock', idStock)
+
     useEffect (()=>{
-        const productDoc = doc(db, 'stock', idStock)
 
         getDoc(productDoc)
             .then(queryDocumentSnapshot => {
@@ -33,9 +34,15 @@ const StockModifier = () => {
 
     },[idStock])
 
+    const stockActual = async(cantidad) => {
+            alert('El stock se modifico')
+            updateDoc (productDoc, {stock:cantidad, fecha:Timestamp.fromDate(new Date())},)
+    }
+
     const handleOnAdd = (cuenta) =>{
             setCantidad(cuenta)
-            alert('El stock se modifico')
+            stockActual(cuenta)
+            
     } 
 
 
