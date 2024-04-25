@@ -53,6 +53,9 @@ textarea {
     width: 2rem;
     margin-left: 1rem;
 }
+.inputEquipo{
+    display: none;
+}
 @media (max-width: 910px) {
     .seccionDatos {
         flex-direction: column;

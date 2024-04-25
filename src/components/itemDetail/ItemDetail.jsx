@@ -1,25 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './itemDetail.module.css';
 import {useForm} from "react-hook-form";
 import {collection, addDoc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 
+
 const ItemDetail = ({eq}) => {
+    const [apellido, setApellido] = useState('');
     
-        const [apellido, setApellido] = useState('');
-    
-        const handleChange = (event) => {
-            const textoMayusculas = event.target.value.toUpperCase();
-            setApellido(textoMayusculas);
-        };
+    const handleChange = (event) => {
+        const textoMayusculas = event.target.value.toUpperCase();
+        setApellido(textoMayusculas);
+    };
 
 
-    const {register, formState:{errors}, handleSubmit, watch} = useForm();
+const {register, formState:{errors}, handleSubmit, watch} = useForm();
 
 
-    const reportado = watch('pregunta')
+const reportado = watch('pregunta')
 
+const onSubmit = (datos)=> {
+    const reporte =collection (db,'reportes')
+    addDoc (reporte, datos);
+    alert("Reporte enviado correctamente, muchas gracias" )
+}
     const onSubmit = (datos)=> {
         const reporte =collection (db,'reportes')
         addDoc (reporte, datos);
@@ -32,7 +37,11 @@ const ItemDetail = ({eq}) => {
                 <h2 className={classes.item__titulo}>Reporte de falla de {eq.nombre}</h2>
             <div className={classes.seccionDatos}>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-                    <span>
+                <span className={classes.inputEquipo}>
+                    <label htmlFor="equipo"></label>
+                    <input type="text" id='equipo'{...register('equipo')} defaultValue={eq.nombre} />
+                </span>
+                <span>
                     <label htmlFor="fecha">Fecha: </label>
                     <input type="date" id='fecha' {...register('fecha', {required:true})}/>
                     {errors.fecha?.type === 'required' && <p>Este campo es obligatorio</p>}
@@ -53,23 +62,20 @@ const ItemDetail = ({eq}) => {
                     {errors.clave?.type === 'required' && <p>Este campo es obligatorio</p>}
                 </span>
                 <span>
-                    <label htmlFor="caso">Numbero de caso: </label>
-                    <input type="text" id='caso' {...register('caso')}/>
-                </span>
-                {/* <span>
                     <label htmlFor="pregunta">Se reporto a servicio tencnico?</label>
                     <input type="checkbox" id="pregunta" {...register ('pregunta')} className={classes.checkbox}/>
-                </span>
+                </span> 
                 {reportado && (
                 <span>
                     <label htmlFor="caso">Numbero de caso: </label>
                     <input type="text" id='caso' {...register('caso')}/>
-                </span>)} */}
+                </span>)} 
                 <button type='submit' className={`btn btn-warning ${classes.datos__boton}`}>Enviar</button>
             </form>
                 <section className={classes.datosServicio}>
-                    <h2 className={classes.datos__titulo}>Datos del eqiupo relevantes para solicitar servicio</h2>
+                    <h2 className={classes.datos__titulo}>Datos del eqiupo relevantes para solicitar servicio técnico</h2>
                     <p className={classes.datos__p}>Telefono de servicio tecnico: {eq.telefono}</p>
+                    <p className={classes.datos__p}>eMail: {eq.email}</p>
                     <p className={classes.datos__p}>Número de serie: {eq.serie}</p>
                 </section>
             </div>

@@ -4,6 +4,7 @@ import classes from './itemReporte.module.css'
 
 const ItemReporte = ({equipo}) => {
 
+
     return (
         <div className = {classes.reporte}>
             <p className={classes.reporte__p}>Fecha de reporte: {equipo.reporte}</p>
