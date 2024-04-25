@@ -25,11 +25,6 @@ const onSubmit = (datos)=> {
     addDoc (reporte, datos);
     alert("Reporte enviado correctamente, muchas gracias" )
 }
-    const onSubmit = (datos)=> {
-        const reporte =collection (db,'reportes')
-        addDoc (reporte, datos);
-        alert("Reporte enviado correctamente, muchas gracias" )
-    }
 
     return (
 
