@@ -34,17 +34,16 @@ const StockModifier = () => {
 
     },[idStock])
 
-    const stockActual = async(cantidad) => {
-            alert('El stock se modifico')
-            updateDoc (productDoc, {stock:cantidad, fecha:Timestamp.fromDate(new Date())},)
+    
+    const stockActual = async(cuenta, formData) => {
+        alert('El stock se modifico')
+        await updateDoc (productDoc, {stock:cuenta, fecha:Timestamp.fromDate(new Date())})
     }
-
+    
     const handleOnAdd = (cuenta) =>{
-            setCantidad(cuenta)
-            stockActual(cuenta)
-            
+        setCantidad(cuenta)
+        stockActual(cuenta) 
     } 
-
 
     return (
         <div className={classes.stockContainer} >  
