@@ -24,7 +24,8 @@ const Item = ({stock}) => {
             <p className='stockItem__titulo'>{stock.nombre} : <span className='stockNumber'>{stock.stock}</span>  {stock.presentacion} 
             {imagenPAraMostrar} 
             </p>
-            <Link to={`stockModifier/${stock.id}`}  className='btn btn-primary'>Corregir</Link>
+            {/* <Link to={`stockModifier/${stock.id}`}  className='btn btn-primary'>Corregir</Link> */}
+            <Link to={`nuevoModifier/${stock.id}`}  className='btn btn-primary'>Corregir</Link>
         </article>
     </>
     );

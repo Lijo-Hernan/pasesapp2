@@ -2,12 +2,16 @@ import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './itemDetail.module.css';
 import {useForm} from "react-hook-form";
-import {collection, addDoc} from 'firebase/firestore'
+import {collection, addDoc, Timestamp} from 'firebase/firestore'
 import {db} from '../firebase/config'
+import { useNavigate } from 'react-router-dom';
 
 
 const ItemDetail = ({eq}) => {
     const [apellido, setApellido] = useState('');
+
+    const navegar = useNavigate()
+
     
     const handleChange = (event) => {
         const textoMayusculas = event.target.value.toUpperCase();
@@ -22,7 +26,8 @@ const reportado = watch('pregunta')
 
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
-    addDoc (reporte, datos);
+    addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
+    navegar('/')
     alert("Reporte enviado correctamente, muchas gracias" )
 }
 
@@ -37,8 +42,8 @@ const onSubmit = (datos)=> {
                     <input type="text" id='equipo'{...register('equipo')} defaultValue={eq.nombre} />
                 </span>
                 <span>
-                    <label htmlFor="fecha">Fecha: </label>
-                    <input type="date" id='fecha' {...register('fecha', {required:true})}/>
+                    <label htmlFor="ingreso">Fecha: </label>
+                    <input type="date" id='ingreso' {...register('ingreso', {required:true})}/>
                     {errors.fecha?.type === 'required' && <p>Este campo es obligatorio</p>}
                 </span>
                 <span>
