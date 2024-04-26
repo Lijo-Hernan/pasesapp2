@@ -8,7 +8,7 @@ const Item = ({equipo}) => {
 
     let estado;
 
-    if (equipo.reporte === "" && equipo.descripcion === "") {
+    if (equipo.descripcion === "") {
         estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/checkMark.png?alt=media&token=6146dce1-56c3-4eeb-9dc5-389099690f6d' 
         alt='checkMark' />;
     }else {
@@ -21,7 +21,7 @@ const Item = ({equipo}) => {
     <>
         <article className={classes.item__card}>
             <h2 className={classes.item__titulo}>{equipo.nombre}</h2>
-                {equipo.reporte === "" ?
+                {equipo.descripcion === "" ?
                     <div className={classes.item__inner}>
                         <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
                         <span className={classes.item__span}>

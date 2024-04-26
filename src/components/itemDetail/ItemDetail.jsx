@@ -2,31 +2,52 @@ import React, {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './itemDetail.module.css';
 import {useForm} from "react-hook-form";
-import {collection, addDoc, Timestamp} from 'firebase/firestore'
+import {collection, addDoc, Timestamp, updateDoc, getDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 const ItemDetail = ({eq}) => {
     const [apellido, setApellido] = useState('');
+    const [eqRep, setEqRep] =useState('');
 
     const navegar = useNavigate()
 
+    const {id} = useParams();
     
     const handleChange = (event) => {
         const textoMayusculas = event.target.value.toUpperCase();
         setApellido(textoMayusculas);
     };
 
+    const {register, formState:{errors}, handleSubmit, watch} = useForm();
 
-const {register, formState:{errors}, handleSubmit, watch} = useForm();
+    const reportado = watch('pregunta')
 
+    const eqDoc = doc(db, 'equipos', id)
 
-const reportado = watch('pregunta')
+    useEffect (()=>{
+
+        getDoc(eqDoc)
+            .then(queryDocumentSnapshot => {
+                if (queryDocumentSnapshot.exists && queryDocumentSnapshot.data()){
+                const data = queryDocumentSnapshot.data()
+                const adaptEq = {id: queryDocumentSnapshot.id, ...data}
+                setEqRep(adaptEq)
+            } else{setError(true)}
+        })
+            .catch(() => {
+                console.log('error')
+            })
+
+    },[eq])
+
+console.log(eqRep)
 
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
+    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
     navegar('/')
     alert("Reporte enviado correctamente, muchas gracias" )
 }
@@ -42,7 +63,7 @@ const onSubmit = (datos)=> {
                     <input type="text" id='equipo'{...register('equipo')} defaultValue={eq.nombre} />
                 </span>
                 <span>
-                    <label htmlFor="ingreso">Fecha: </label>
+                    <label htmlFor="ingreso">Fecha de la falla: </label>
                     <input type="date" id='ingreso' {...register('ingreso', {required:true})}/>
                     {errors.fecha?.type === 'required' && <p>Este campo es obligatorio</p>}
                 </span>
