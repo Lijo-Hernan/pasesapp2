@@ -6,6 +6,8 @@ import ItemDetailContainer from './components/itemDetailContainer/ItemDetailCont
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Error from './components/error/Error'
 import NuevoModifier from './components/nuevoModifier/NuevoModifier'
+import Reinicio from './components/reinicio/Reinicio'
+import FinCaso from './components/finCaso/FinCaso'
 // import StockModifier from './components/stockModifier/StockModifier'
 
 
@@ -22,6 +24,8 @@ function App() {
         <Route path='/reporte/:id' element={<ItemDetailContainer/>}/>
         <Route path='*' element={<Error/>}/>
         <Route path='/nuevoModifier/:idStock' element={<NuevoModifier/>}/>
+        <Route path='/reinicio/:id' element={<Reinicio/>}/>
+        <Route path='/fincaso/:id' element={<FinCaso/>}/>
         {/* <Route path='/stockModifier/:idStock' element={<StockModifier/>}/> */}
     </Routes>
       <Footer/>

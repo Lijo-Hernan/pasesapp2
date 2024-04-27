@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './itemReporte.module.css'
 
@@ -10,7 +11,7 @@ const ItemReporte = ({equipo}) => {
             <p className={classes.reporte__p}>Fecha de reporte: {equipo.reporte}</p>
             <p className={classes.reporte__p}>Numero de caso: {equipo.caso}</p>
             <p className={classes.reporte__p}>Descripcion: {equipo.descripcion}</p>
-            <button className='btn btn-success' >Finalizar caso</button>
+            <Link to={`fincaso/${equipo.id}`} className='btn btn-success'>Finalizar caso</Link>
         </div>
     );
 };

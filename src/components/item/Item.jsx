@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import ItemReporte from '../itemReporte/ItemReporte'
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './item.module.css'
@@ -16,6 +16,13 @@ const Item = ({equipo}) => {
         alt='xMArk' />;
     }
 
+    let formattedDate = "Sin fecha de reinicio";
+
+    if (equipo.reinicio && equipo.reinicio.seconds) {
+        const date = new Date(equipo.reinicio.seconds * 1000);
+        formattedDate = date.toLocaleString();
+    }
+
 
     return (
     <>
@@ -25,10 +32,10 @@ const Item = ({equipo}) => {
                     <div className={classes.item__inner}>
                         <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
                         <span className={classes.item__span}>
-                            <p className={classes.item__p}>Fecha de reinicio: {equipo.reinicio}</p>
+                            <p className={classes.item__p}>Fecha de reinicio: {formattedDate}</p>
                             <p className={classes.item__p}>Técnico: {equipo.tecnico}</p>
                         </span>
-                        <Link to='' className='btn btn-primary'>Reportar reincio</Link>
+                        <Link to={`reinicio/${equipo.id}`} className='btn btn-primary'>Reportar reincio</Link>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>

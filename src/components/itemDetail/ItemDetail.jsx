@@ -42,8 +42,6 @@ const ItemDetail = ({eq}) => {
 
     },[eq])
 
-console.log(eqRep)
-
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
