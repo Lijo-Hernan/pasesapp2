@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import ItemReporte from '../itemReporte/ItemReporte'
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './item.module.css'
@@ -8,7 +8,7 @@ const Item = ({equipo}) => {
 
     let estado;
 
-    if (equipo.reporte === "" && equipo.descripcion === "") {
+    if (equipo.descripcion === "") {
         estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/checkMark.png?alt=media&token=6146dce1-56c3-4eeb-9dc5-389099690f6d' 
         alt='checkMark' />;
     }else {
@@ -16,19 +16,26 @@ const Item = ({equipo}) => {
         alt='xMArk' />;
     }
 
+    let formattedDate = "Sin fecha de reinicio";
+
+    if (equipo.reinicio && equipo.reinicio.seconds) {
+        const date = new Date(equipo.reinicio.seconds * 1000);
+        formattedDate = date.toLocaleString();
+    }
+
 
     return (
     <>
         <article className={classes.item__card}>
             <h2 className={classes.item__titulo}>{equipo.nombre}</h2>
-                {equipo.reporte === "" ?
+                {equipo.descripcion === "" ?
                     <div className={classes.item__inner}>
                         <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
                         <span className={classes.item__span}>
-                            <p className={classes.item__p}>Fecha de reinicio: {equipo.reinicio}</p>
+                            <p className={classes.item__p}>Fecha de reinicio: {formattedDate}</p>
                             <p className={classes.item__p}>Técnico: {equipo.tecnico}</p>
                         </span>
-                        <Link to='' className='btn btn-primary'>Reportar reincio</Link>
+                        <Link to={`reinicio/${equipo.id}`} className='btn btn-primary'>Reportar reincio</Link>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>
