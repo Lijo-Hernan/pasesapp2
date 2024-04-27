@@ -4,6 +4,7 @@ import ItemDetail from '../itemDetail/ItemDetail';
 import {doc, getDoc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import classes from './itemDetailContainer.module.css'
+import Loader from '../loader/Loader';
 
 const ItemDetailContainer = () => {
 
@@ -25,7 +26,7 @@ const ItemDetailContainer = () => {
             <div className={classes.detailContainer}>
             <section className={classes.detailContainer__card}>
                 {eq ? <ItemDetail eq={eq}/> 
-                : <h3>Cargando...</h3>}
+                : <div className={classes.container}><span className={classes.loader}><Loader/></span></div> }
             </section>
         </div>
             

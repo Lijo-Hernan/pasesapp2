@@ -45,9 +45,13 @@ const ItemDetail = ({eq}) => {
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
-    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
     navegar('/')
     alert("Reporte enviado correctamente, muchas gracias" )
+    if(datos.caso=""){
+        updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso})
+    }else {
+        updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
+    }
 }
 
     return (
@@ -87,7 +91,7 @@ const onSubmit = (datos)=> {
                 {reportado && (
                 <span>
                     <label htmlFor="caso">Numbero de caso: </label>
-                    <input type="text" id='caso' {...register('caso')}/>
+                    <input type="text" id='caso' placeholder='caso' {...register('caso')}/>
                 </span>)} 
                 <button type='submit' className={`btn btn-warning ${classes.datos__boton}`}>Enviar</button>
             </form>
