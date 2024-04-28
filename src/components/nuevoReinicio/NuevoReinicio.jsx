@@ -1,10 +1,13 @@
+import { useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {Timestamp, updateDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
-import classes from './finCaso.module.css'
+import classes from './nuevoReinicio.module.css'
 
 
-const FinCaso = ({equipo, onClick}) => {
+const NuevoReinicio = ({equipo, onClick}) => {
+
+    const navegar = useNavigate()
 
     const {register, handleSubmit } = useForm();
     
@@ -15,27 +18,33 @@ const FinCaso = ({equipo, onClick}) => {
             window.location.reload();
         };
 
-    const reinCaso = async (datos)=> {
+    // const reinicio = (datos)=> {
+    //     updateDoc (eqDoc, {tecnico:datos.apellido, reinicio:Timestamp.fromDate(new Date())})
+    //     alert("Registro enviado correctamente, muchas gracias" )
+    //     handleFinishCase()
+    // }
+
+    const reinicio = async (datos) => {
         try {
-            await updateDoc (eqDoc, {tecnico:datos.apellido, reporte:Timestamp.fromDate(new Date()), caso:'', descripcion:''})
-            handleFinishCase()
-            alert("Registro enviado correctamente, muchas gracias" )
+            await updateDoc(eqDoc, { tecnico: datos.apellido, reinicio: Timestamp.fromDate(new Date()) });
+            alert("Registro enviado correctamente, muchas gracias");
+            handleFinishCase();
         } catch (error) {
             console.error("Error al actualizar el documento:", error);
         }
-    }
+    };
 
     return (
         <div>
-            <h1>Finalizacion de caso para {equipo.nombre}</h1>
-                <form onSubmit={handleSubmit(reinCaso)}>
+            <h1>Reporte de Reinicio para {equipo.nombre}</h1>
+                <form onSubmit={handleSubmit(reinicio)}>
                     <article className={classes.form__data}>
                         <label htmlFor="apellido">Apellido:{" "}
                             <input type="text" id="apellido" required placeholder="Ingrese su Apellido" autoComplete="on" {...register("apellido")} />
                         </label>
                     </article>
                     <article className={classes.form__btn}>
-                        <button className="btn btn-success btn-lg">Finalizar caso</button> 
+                        <button className="btn btn-success btn-lg">Reinicio</button> 
                     </article>
                 </form> 
             </div>
@@ -43,4 +52,4 @@ const FinCaso = ({equipo, onClick}) => {
     );
 };
 
-export default FinCaso;
+export default NuevoReinicio;
