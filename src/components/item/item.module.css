@@ -45,6 +45,12 @@
     top: 15%;
     object-fit: cover;
 }
+
+.canvasBody {
+    border-radius: 25px;
+    background-color: #3f3f3f;
+}
+
 @media (max-width: 910px) {
     .item__estado {
         display: none;

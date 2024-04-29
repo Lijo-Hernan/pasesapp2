@@ -1,17 +1,16 @@
-import { useForm } from 'react-hook-form';
-import {Timestamp, updateDoc, doc} from 'firebase/firestore'
-import {db} from '../firebase/config'
-import classes from './finCaso.module.css'
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Timestamp, updateDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import classes from "./finCaso.module.css";
 
+const FinCaso = ({ equipo, onClick }) => {
+    const { register, handleSubmit } = useForm();
 
-const FinCaso = ({equipo, onClick}) => {
-
-    const {register, handleSubmit } = useForm();
-    
-    const eqDoc = doc(db, 'equipos', equipo.id)
+    const eqDoc = doc(db, "equipos", equipo.id);
 
     const handleFinishCase = () => {
-            onClick(); 
+            onClick();
             window.location.reload();
         };
 
@@ -26,20 +25,20 @@ const FinCaso = ({equipo, onClick}) => {
     }
 
     return (
-        <div>
-            <h1>Finalizacion de caso para {equipo.nombre}</h1>
+        <div className={classes.canvasCont}>
+            <h1 className={classes.canvasTitle}>Finalizacion de caso para {equipo.nombre}</h1>
                 <form onSubmit={handleSubmit(reinCaso)}>
-                    <article className={classes.form__data}>
-                        <label htmlFor="apellido">Apellido:{" "}
+                    <article className={classes.canvasData}>
+                        <label htmlFor="apellido" className={classes.canvasData}>Apellido:{" "}
                             <input type="text" id="apellido" required placeholder="Ingrese su Apellido" autoComplete="on" {...register("apellido")} />
                         </label>
                     </article>
                     <article className={classes.form__btn}>
-                        <button className="btn btn-success btn-lg">Finalizar caso</button> 
+                        <button className={`btn btn-success ${classes.botonCanvas}`}>Finalizar caso</button>
                     </article>
-                </form> 
+                </form>
             </div>
-        
+
     );
 };
 

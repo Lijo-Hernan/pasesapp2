@@ -51,11 +51,10 @@ const Item = ({equipo}) => {
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>
         </article>
-
-        <Offcanvas show={showOffcanvas} onHide={handleClose}>
-            <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Reporte de Reinicio</Offcanvas.Title>
-            </Offcanvas.Header>
+        <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
+            {/* <Offcanvas.Header closeButton>
+                <Offcanvas.Title>Reporte de Reinicio para {equipo.nombre}</Offcanvas.Title>
+            </Offcanvas.Header> */}
             <Offcanvas.Body>
                 {/* <Link to={`fincaso/${equipo.id}`} className="btn btn-success" onClick={handleClose}> */}
                 {equipo &&  <NuevoReinicio equipo={equipo} onClick={handleClose} />}
@@ -63,6 +62,7 @@ const Item = ({equipo}) => {
                 {/* </Link> */}
             </Offcanvas.Body>
             </Offcanvas>
+
     </>
     );
 };

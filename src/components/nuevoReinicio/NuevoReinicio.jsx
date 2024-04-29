@@ -35,16 +35,16 @@ const NuevoReinicio = ({equipo, onClick}) => {
     };
 
     return (
-        <div>
-            <h1>Reporte de Reinicio para {equipo.nombre}</h1>
+        <div className={classes.canvasCont}>
+            <h1 className={classes.canvasTitle}>Reporte de Reinicio para {equipo.nombre}</h1>
                 <form onSubmit={handleSubmit(reinicio)}>
-                    <article className={classes.form__data}>
-                        <label htmlFor="apellido">Apellido:{" "}
+                    <article className={classes.canvasData}>
+                        <label htmlFor="apellido" className={classes.canvasData}>Apellido:{" "}
                             <input type="text" id="apellido" required placeholder="Ingrese su Apellido" autoComplete="on" {...register("apellido")} />
                         </label>
                     </article>
                     <article className={classes.form__btn}>
-                        <button className="btn btn-success btn-lg">Reinicio</button> 
+                        <button className={`btn btn-success ${classes.botonCanvas}`}>Reinicio</button> 
                     </article>
                 </form> 
             </div>
