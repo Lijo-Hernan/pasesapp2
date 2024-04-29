@@ -1,4 +1,3 @@
-import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {Timestamp, updateDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
@@ -7,8 +6,6 @@ import Swal from 'sweetalert2'
 
 
 const NuevoReinicio = ({equipo, onClick}) => {
-
-    const navegar = useNavigate()
 
     const {register, handleSubmit } = useForm();
     

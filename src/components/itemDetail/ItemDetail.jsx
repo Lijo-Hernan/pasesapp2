@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 const ItemDetail = ({eq}) => {
     const [apellido, setApellido] = useState('');
-    const [eqRep, setEqRep] =useState('');
+    // const [eqRep, setEqRep] =useState('');
 
     const navegar = useNavigate()
 
@@ -34,7 +34,7 @@ const ItemDetail = ({eq}) => {
                 if (queryDocumentSnapshot.exists && queryDocumentSnapshot.data()){
                 const data = queryDocumentSnapshot.data()
                 const adaptEq = {id: queryDocumentSnapshot.id, ...data}
-                setEqRep(adaptEq)
+                // setEqRep(adaptEq)
             } else{setError(true)}
         })
             .catch(() => {

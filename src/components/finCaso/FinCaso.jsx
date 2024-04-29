@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Timestamp, updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import classes from "./finCaso.module.css";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 
 const FinCaso = ({ equipo, onClick }) => {
@@ -14,11 +11,9 @@ const FinCaso = ({ equipo, onClick }) => {
 
     const handleFinishCase = () => {
             onClick();
-            // window.location.reload();
         };
 
     const reinCaso = async (datos)=> {
-        // toast.success("El equipo queda operativo nuevamente",{theme:'colored'});
         try {
             await updateDoc (eqDoc, {tecnico:datos.apellido, reporte:Timestamp.fromDate(new Date()), caso:'', descripcion:''})
         
@@ -55,7 +50,6 @@ const FinCaso = ({ equipo, onClick }) => {
                     <article className={classes.form__btn}>
                         <button className={`btn btn-success ${classes.botonCanvas}`}>Finalizar caso</button>
                     </article>
-                    <ToastContainer autoClose={2000}/>
                 </form>
             </div>
 

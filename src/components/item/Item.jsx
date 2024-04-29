@@ -46,20 +46,16 @@ const Item = ({equipo}) => {
                         <Button variant="primary" onClick={handleShow}>
                             Reportar Reinicio
                         </Button>
-                        {/* <Link to={`reinicio/${equipo.id}`} className='btn btn-primary'>Reportar reincio</Link> */}
                     </div>
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>
         </article>
         <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
-            {/* <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Reporte de Reinicio para {equipo.nombre}</Offcanvas.Title>
-            </Offcanvas.Header> */}
+
             <Offcanvas.Body>
-                {/* <Link to={`fincaso/${equipo.id}`} className="btn btn-success" onClick={handleClose}> */}
+
                 {equipo &&  <NuevoReinicio equipo={equipo} onClick={handleClose} />}
-                {/* Finalizar caso */}
-                {/* </Link> */}
+
             </Offcanvas.Body>
             </Offcanvas>
 
