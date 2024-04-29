@@ -5,11 +5,12 @@ import {useForm} from "react-hook-form";
 import {collection, addDoc, Timestamp, updateDoc, getDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const ItemDetail = ({eq}) => {
     const [apellido, setApellido] = useState('');
-    const [eqRep, setEqRep] =useState('');
+    // const [eqRep, setEqRep] =useState('');
 
     const navegar = useNavigate()
 
@@ -33,7 +34,7 @@ const ItemDetail = ({eq}) => {
                 if (queryDocumentSnapshot.exists && queryDocumentSnapshot.data()){
                 const data = queryDocumentSnapshot.data()
                 const adaptEq = {id: queryDocumentSnapshot.id, ...data}
-                setEqRep(adaptEq)
+                // setEqRep(adaptEq)
             } else{setError(true)}
         })
             .catch(() => {
@@ -45,9 +46,24 @@ const ItemDetail = ({eq}) => {
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
-    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
-    navegar('/')
-    alert("Reporte enviado correctamente, muchas gracias" )
+    if(datos.caso=""){
+        updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso})
+    }else {
+        updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
+    }
+    Swal.fire({
+        title: `Se registra evento para ${eq.nombre}`,
+        icon: 'success',
+        confirmButtonText: 'Cerrar',
+        background: 'green',
+        color: 'white',
+        confirmButtonColor:'red',
+        width:'25em'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href='/'
+        }
+});
 }
 
     return (
@@ -87,7 +103,7 @@ const onSubmit = (datos)=> {
                 {reportado && (
                 <span>
                     <label htmlFor="caso">Numbero de caso: </label>
-                    <input type="text" id='caso' {...register('caso')}/>
+                    <input type="text" id='caso' placeholder='caso' {...register('caso')}/>
                 </span>)} 
                 <button type='submit' className={`btn btn-warning ${classes.datos__boton}`}>Enviar</button>
             </form>

@@ -1,8 +1,10 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import ItemReporte from '../itemReporte/ItemReporte'
+import { Offcanvas, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import classes from './item.module.css'
 import { Link } from 'react-router-dom';
+import NuevoReinicio from '../nuevoReinicio/NuevoReinicio';
 
 const Item = ({equipo}) => {
 
@@ -15,6 +17,12 @@ const Item = ({equipo}) => {
         estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/xMark.png?alt=media&token=8144ca63-bdb0-40cc-98d6-8530def2715c' 
         alt='xMArk' />;
     }
+
+    const [showOffcanvas, setShowOffcanvas] = useState(false);
+
+    const handleClose = () => setShowOffcanvas(false);
+    const handleShow = () => setShowOffcanvas(true);
+
 
     let formattedDate = "Sin fecha de reinicio";
 
@@ -35,11 +43,22 @@ const Item = ({equipo}) => {
                             <p className={classes.item__p}>Fecha de reinicio: {formattedDate}</p>
                             <p className={classes.item__p}>Técnico: {equipo.tecnico}</p>
                         </span>
-                        <Link to={`reinicio/${equipo.id}`} className='btn btn-primary'>Reportar reincio</Link>
+                        <Button variant="primary" onClick={handleShow}>
+                            Reportar Reinicio
+                        </Button>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
             <span className={classes.item__estado}>{estado}</span>
         </article>
+        <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
+
+            <Offcanvas.Body>
+
+                {equipo &&  <NuevoReinicio equipo={equipo} onClick={handleClose} />}
+
+            </Offcanvas.Body>
+            </Offcanvas>
+
     </>
     );
 };

@@ -6,6 +6,8 @@ import {db} from '../firebase/config'
 import Loader from '../loader/Loader';
 import classes from './stockModifier.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const StockModifier = () => {
@@ -36,7 +38,8 @@ const StockModifier = () => {
 
     
     const stockActual = async(cuenta, formData) => {
-        alert('El stock se modifico')
+        // alert('El stock se modifico')
+        toast.success(`Stock de ${productDoc.nombre}, muchas gracias`);
         await updateDoc (productDoc, {stock:cuenta, fecha:Timestamp.fromDate(new Date())})
     }
     
@@ -54,6 +57,7 @@ const StockModifier = () => {
                 <h3>en cantidad de {stockItem.presentacion}</h3>
                 <ItemCount {...stockItem} onAdd={handleOnAdd}/> 
             </section>}
+            <ToastContainer autoClose={1500}/>
         </div>
     );
 };
