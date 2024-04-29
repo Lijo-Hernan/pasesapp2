@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form";
 import {collection, addDoc, Timestamp, updateDoc, getDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const ItemDetail = ({eq}) => {
@@ -45,13 +46,24 @@ const ItemDetail = ({eq}) => {
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
-    navegar('/')
-    alert("Reporte enviado correctamente, muchas gracias" )
     if(datos.caso=""){
         updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso})
     }else {
         updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso})
     }
+    Swal.fire({
+        title: `Se registra evento para ${eq.nombre}`,
+        icon: 'success',
+        confirmButtonText: 'Cerrar',
+        background: 'green',
+        color: 'white',
+        confirmButtonColor:'red',
+        width:'25em'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href='/'
+        }
+});
 }
 
     return (

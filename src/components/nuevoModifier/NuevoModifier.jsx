@@ -7,6 +7,7 @@ import classes from './nuevoModifier.module.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const NuevoModifier = () => {
     const [stockItem, setStockItem]= useState(null)
@@ -35,9 +36,21 @@ const NuevoModifier = () => {
 
     },[idStock])
 
+
+
     const stockActual = async(data) => {
-        alert('El stock se modifico')
-        navegar('/')
+        Swal.fire({
+            title: `Stock de ${stockItem.nombre} actualizado`,
+            icon: 'success',
+            confirmButtonText: 'Cerrar',
+            background: 'green',
+            color: 'white',
+            confirmButtonColor:'red',
+            width:'25em'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href='/'
+            }})
         await updateDoc (productDoc, {stock:data.stock, fecha:Timestamp.fromDate(new Date()), Apellido:data.apellido})
     }
     

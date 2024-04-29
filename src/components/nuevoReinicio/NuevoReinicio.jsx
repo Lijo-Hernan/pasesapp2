@@ -1,8 +1,9 @@
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {Timestamp, updateDoc, doc} from 'firebase/firestore'
 import {db} from '../firebase/config'
 import classes from './nuevoReinicio.module.css'
+import Swal from 'sweetalert2'
 
 
 const NuevoReinicio = ({equipo, onClick}) => {
@@ -15,22 +16,28 @@ const NuevoReinicio = ({equipo, onClick}) => {
 
     const handleFinishCase = () => {
             onClick(); 
-            window.location.reload();
         };
-
-    // const reinicio = (datos)=> {
-    //     updateDoc (eqDoc, {tecnico:datos.apellido, reinicio:Timestamp.fromDate(new Date())})
-    //     alert("Registro enviado correctamente, muchas gracias" )
-    //     handleFinishCase()
-    // }
 
     const reinicio = async (datos) => {
         try {
             await updateDoc(eqDoc, { tecnico: datos.apellido, reinicio: Timestamp.fromDate(new Date()) });
-            alert("Registro enviado correctamente, muchas gracias");
-            handleFinishCase();
+        
+            await Swal.fire({
+                title: `Reinicio de ${equipo.nombre} registrado`,
+                icon: 'success',
+                confirmButtonText: 'Cerrar',
+                background: 'green',
+                color: 'white',
+                confirmButtonColor:'red',
+                width:'25em'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href='/'
+                }
+            });
+        handleFinishCase();
         } catch (error) {
-            console.error("Error al actualizar el documento:", error);
+            alert("Error al actualizar el documento");
         }
     };
 
