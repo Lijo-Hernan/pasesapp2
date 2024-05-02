@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './header.module.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 
 const header = () => {
@@ -9,8 +10,9 @@ const header = () => {
             alt="Pirovano" className={classes.header__img}/></Link>
             <div className={classes.header__title}>
                 <h1 className={classes.header__h1}>Servicio Tomografia Computada</h1>
-                <h2 className={classes.header__h2}>Pases de Guardia</h2>            
+                <h2 className={classes.header__h2}>Pases de Guardia</h2>
             </div>
+            <Link to='/historial' className={classes.header__boton}><b>Historial de Reportes</b></Link>            
         </header>
     );
 };

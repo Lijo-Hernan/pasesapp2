@@ -1,14 +1,14 @@
 import './App.css'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
-import ItemListContainer from './components/itemListContainer/ItemListContainer'
-import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer'
+import ItemListContainer from './components/items/itemListContainer/ItemListContainer'
+import ItemDetailContainer from './components/items/itemDetailContainer/ItemDetailContainer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Error from './components/error/Error'
-import NuevoModifier from './components/nuevoModifier/NuevoModifier'
-import Reinicio from './components/reinicio/Reinicio'
-import FinCaso from './components/finCaso/FinCaso'
-// import StockModifier from './components/stockModifier/StockModifier'
+import Reinicio from './components/items/reinicio/Reinicio'
+import FinCaso from './components/items/finCaso/FinCaso'
+import StockModifier from './components/stock/stockModifier/StockModifier'
+import HistorialListContainer from './components/historial/historialListContainer/HistorialListContainer'
 
 
 function App() {
@@ -18,15 +18,14 @@ function App() {
     <>
     <BrowserRouter>
       <Header/>
-    
     <Routes>
+        <Route path='/historial' element={<HistorialListContainer/>}/>
         <Route path='/' element={<ItemListContainer/>}/>
         <Route path='/reporte/:id' element={<ItemDetailContainer/>}/>
         <Route path='*' element={<Error/>}/>
-        <Route path='/nuevoModifier/:idStock' element={<NuevoModifier/>}/>
+        <Route path='/stock/stockmodifier/:idStock' element={<StockModifier/>}/>
         <Route path='/reinicio/:id' element={<Reinicio/>}/>
-        <Route path='/fincaso/:id' element={<FinCaso/>}/>
-        {/* <Route path='/stockModifier/:idStock' element={<StockModifier/>}/> */}
+        <Route path='/items/fincaso/:id' element={<FinCaso/>}/>
     </Routes>
       <Footer/>
     

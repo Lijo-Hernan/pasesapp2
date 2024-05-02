@@ -1,0 +1,33 @@
+.reporte {
+    display: flex;
+    justify-items: center;
+    justify-self: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    width: 70%;
+    text-align: left;
+}
+
+.reporte__p {
+    align-self: first baseline;
+}
+
+.boton {
+    margin-top: 20%;
+}
+
+.canvasBody {
+    border-radius: 25px;
+    background-color: #3f3f3f;
+}
+
+@media (max-width: 768px) {
+    .reporte {
+        width: 100%;
+    }
+}
+
