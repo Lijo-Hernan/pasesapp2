@@ -46,7 +46,7 @@ const ItemDetail = ({eq}) => {
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
     addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
-    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), reporte:datos.ingreso, caso:datos.caso});
+    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), ingreso:datos.ingreso, caso:datos.caso});
 
     Swal.fire({
         title: `Se registra evento para ${eq.nombre}`,

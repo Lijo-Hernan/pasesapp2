@@ -14,11 +14,19 @@ const ItemReporte = ({equipo}) => {
 
     let numCaso = (equipo.caso) ? equipo.caso : "No se solicito servicio tecnico"
 
+    
+    let formattedDate = "No se declaro fecha de falla";
+
+    if (equipo.reporte && equipo.reporte.seconds) {
+        const date = new Date(equipo.reporte.seconds * 1000);
+        formattedDate = date.toLocaleString();
+    }
+
     return (
         <>
 
             <div className={classes.reporte}>
-                <p className={classes.reporte__p}>Fecha de reporte: {equipo.reporte}</p>
+                <p className={classes.reporte__p}>Fecha de reporte: {formattedDate}</p>
                 <p className={classes.reporte__p}>Numero de caso: {numCaso}</p>
                 <p className={classes.reporte__p}>Descripcion: {equipo.descripcion}</p>
                 <span className={classes.boton}>
