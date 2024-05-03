@@ -1,4 +1,4 @@
-/* .listContainer {
+.listContainer {
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 10px;
@@ -6,12 +6,9 @@
     align-items: center;
     margin: 0.5vh;
     overflow: hidden;
-} */
-
-.listContainer {
-    display: flex;
-    flex-direction: column;
 }
+
+
 @media (max-width: 768px) {
     .listContainer {
         display: flex;
