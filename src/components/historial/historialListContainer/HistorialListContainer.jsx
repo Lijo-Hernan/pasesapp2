@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import {collection, getDocs} from 'firebase/firestore'
 import {db} from '../../firebase/config'
 import classes from './historialListContainer.module.css'
@@ -6,31 +7,33 @@ import Loader from '../../loader/Loader'
 import HistorialList from '../historialList/HistorialList';
 import HistorialNav from '../historialNav/HistorialNav';
 
-const HistorialListContainer = () => {
+const HistorialListContainer = ({introduccion}) => {
 
-    const [reportes, setReportes]= useState ([]); 
+    const [reportes, setReportes]= useState ([]);
 
-    useEffect (()=> {
-        const fetchReportes = collection(db, "reportes");
-        getDocs (fetchReportes)
-        .then ((resp)=> {
+    const { categoria } = useParams()
 
-            setReportes (
-                resp.docs.map ((doc) =>{
-                    return {...doc.data() , id: doc.id}
-                })
-            )
-        }) 
-    },[])
+    useEffect(() => {
+        const fetchReportes = async () => {
+            const querySnapshot = await getDocs(collection(db, 'reportes'));
+            const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+            setReportes(data);
+        };
+        fetchReportes();
+    }, []);
 
+    const repFiltrado = (categoria !=undefined)?
+    reportes.filter(reporte => reporte.datos.equipo === categoria) : reportes
+
+
+console.log(repFiltrado, categoria)
 
     return (
         <div className={classes.container}>
             <HistorialNav/>
+            <h2>{introduccion}</h2>
             <div className={classes.container__card}>
-                {reportes.length == 0 ? <Loader/> 
-                : 
-                <HistorialList reportes={reportes}/>}
+                {reportes.length === 0 ? <Loader/> : <HistorialList reportes={repFiltrado}/>}
             </div>
         </div>
     );

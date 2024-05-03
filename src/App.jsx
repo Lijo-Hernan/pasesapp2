@@ -19,13 +19,14 @@ function App() {
     <BrowserRouter>
       <Header/>
     <Routes>
-        <Route path='/historial' element={<HistorialListContainer/>}/>
+        <Route path='/historial' element={<HistorialListContainer introduccion={`Listado completo de reportes` }/>}/>
         <Route path='/' element={<ItemListContainer/>}/>
         <Route path='/reporte/:id' element={<ItemDetailContainer/>}/>
         <Route path='*' element={<Error/>}/>
         <Route path='/stock/stockmodifier/:idStock' element={<StockModifier/>}/>
         <Route path='/reinicio/:id' element={<Reinicio/>}/>
         <Route path='/items/fincaso/:id' element={<FinCaso/>}/>
+        <Route path='/historial/:categoria' element={<HistorialListContainer introduccion={`Listado reportes segun equipo` }/>}/>   
     </Routes>
       <Footer/>
     
