@@ -27,7 +27,7 @@ export function AuthProvider ({children}) {
     useEffect(()=>{
         const suscripto = onAuthStateChanged(auth, (currentUser)=>{
             if(!currentUser){
-                console.log("no hay usuario")
+                // console.log("no hay usuario")
                 setUsuario(null)
             }else {
                 setUsuario(currentUser)
@@ -35,7 +35,6 @@ export function AuthProvider ({children}) {
         })
         return ()=>suscripto()
     },[])
-
 
     const registrar = async (email, password, apellido) => {
         const resp = await createUserWithEmailAndPassword(auth, email, password, apellido);
@@ -52,11 +51,27 @@ export function AuthProvider ({children}) {
 
     const logOut = async () => {
         const resp = await signOut(auth);
+        window.location.href='/'
+    };
+
+    const iniciarTiempoSesion = () => {
+        
+        // const tiempoEspera = 3 * 3600 * 1000;
+        const tiempoEspera = 120000; // 2 min  en milisegundos
+        
+        const tiempoSesion = setInterval(() => {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                logOut();
+            } else {
+                clearInterval(tiempoSesion);
+            }
+        }, tiempoEspera);
     };
 
     return (
         <authContext.Provider value={
-            { registrar, logIn, logInGoogle, logOut, usuario }
+            { registrar, logIn, logInGoogle, logOut, iniciarTiempoSesion, usuario }
         }>
             {children}
         </authContext.Provider>

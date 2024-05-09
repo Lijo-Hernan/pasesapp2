@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Stack, Container, Form, Button } from 'react-bootstrap';
 import { useAuth } from '../../context/authContext';
 
-
-
-
-
 const Login = () => {
     const auth = useAuth();
+    const iniciarTiempoSesion = auth.iniciarTiempoSesion;
 
-    const [registrado, setRegistrado] = useState(false);
+    const [registrado, setRegistrado] = useState(true);
     const [correo, setCorreo] = useState('');
     const [password, setPassword] = useState('');
     const [apellido, setApellido] = useState('');
@@ -24,13 +21,19 @@ const Login = () => {
         e.preventDefault();
         if (registrado) {
             auth.logIn(correo, password);
+            iniciarTiempoSesion();
         } else {
             auth.registrar(correo, password, apellido);
+            iniciarTiempoSesion();
         }
     }
 
     const handleGoogle = () => {
-        auth.logInGoogle();
+        auth.logInGoogle().then(() => {
+            iniciarTiempoSesion();
+        }).catch((error) => {
+            console.error("Error al iniciar sesión con Google:", error);
+        });
     };
 
     return (
