@@ -49,7 +49,6 @@ export function AuthProvider ({children}) {
     // }
     try {
         const { userCredential } = await signInWithEmailAndPassword(auth, email, password);
-        console.log("Inicio de sesión exitoso:", userCredential.user);
         } catch (error) {
         console.error("Error:", error);
     
