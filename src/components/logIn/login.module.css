@@ -1,0 +1,64 @@
+.login__body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background-origin: border-box;
+    align-content: center;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/Tomo2.jpg?alt=media&token=71d1b34d-3bd1-40fb-832a-f3463749a134);
+    object-fit: scale-down;
+    padding: 2rem 0;
+    background-size: cover;
+    background-repeat: no-repeat; 
+
+}
+.form__container {
+    border-radius: 20px;
+    padding: 1rem;
+    width: 90%;
+    background: rgb(128, 128, 128, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+.img{
+    width: 30vh;
+} 
+
+.form__group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem 0;
+}
+
+.form__section {
+    font-size: 1rem;
+    font-weight: bold;
+}
+.linea{
+    width: 100%;
+    border: 3px solid #000000; 
+    border-radius: 150px/5px; 
+    height: 0px; text-align: center;
+    opacity: 1;
+}
+
+.login {
+    width: 40%;
+    margin: 0 1.5rem;
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+.botones {
+    display: flex;
+    width: 40%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+}

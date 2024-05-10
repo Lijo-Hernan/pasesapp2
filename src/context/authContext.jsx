@@ -7,7 +7,6 @@ import { createUserWithEmailAndPassword,
         signOut,
         onAuthStateChanged
 } from "firebase/auth";
-import 'bootstrap/dist/css/bootstrap.css';
 import Swal from 'sweetalert2'
 
 export const authContext = createContext();
@@ -39,24 +38,22 @@ export function AuthProvider ({children}) {
 
     const registrar = async (email, password) => {
         const resp = await createUserWithEmailAndPassword(auth, email, password);
+        iniciarTiempoSesion()
     };
 
     const logIn = async (email, password) => {
-    //     try {
-    //         const resp = await signInWithEmailAndPassword(auth, email, password);
-    //     } catch (error){
-    //         alert("Error de inicio de sesión:")       
-    // }
+
     try {
-        const { userCredential } = await signInWithEmailAndPassword(auth, email, password);
+        const resp = await signInWithEmailAndPassword(auth, email, password);
+        iniciarTiempoSesion()
         } catch (error) {
-        console.error("Error:", error);
     
         const errorCode = error.code;
         const errorMessage = error.message;
     
         if (errorCode === 'auth/user-not-found') {
             alert("Usuario no registrado.");
+            
         } else if (errorCode === 'auth/invalid-login-credentials') {
             Swal.fire({
                 title: `Error de credenciales`,
