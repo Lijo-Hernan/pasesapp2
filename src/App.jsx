@@ -9,16 +9,18 @@ import Reinicio from './components/items/reinicio/Reinicio'
 import FinCaso from './components/items/finCaso/FinCaso'
 import StockModifier from './components/stock/stockModifier/StockModifier'
 import HistorialListContainer from './components/historial/historialListContainer/HistorialListContainer'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { AuthProvider } from './context/authContext'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { auth } from './components/firebase/config'
 import Login from './components/logIn/Login'
+import Loader from './components/loader/Loader'
 
 
 function App() {
 
   const [usuarioGlobal, setUsuarioGlobal]= useState(null)
+  const [cargando, setCargando] = useState(true);
 
   onAuthStateChanged(auth,(usuarioFirebase)=> {
     if (usuarioFirebase){
@@ -27,8 +29,18 @@ function App() {
       setUsuarioGlobal(null)
 }})
 
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (usuarioFirebase) => {
+    setUsuarioGlobal(usuarioFirebase);
+    setCargando(false);
+  });
+  return () => unsubscribe();
+}, []);
 
-  
+if(cargando) {
+  return <Loader/>
+} else {
+
   if(usuarioGlobal !=null) { 
     
     return (
@@ -38,7 +50,7 @@ function App() {
       <Header/>
         <Routes>
             <Route path='/historial' element={<HistorialListContainer introduccion={`Listado completo de reportes` }/>}/>
-            <Route path='/' element={<ItemListContainer/>}/>
+            <Route path='/' element={<ItemListContainer/>} usuarioGlobal={usuarioGlobal}/>
             <Route path='/reporte/:id' element={<ItemDetailContainer/>}/>
             <Route path='*' element={<Error/>}/>
             <Route path='/stock/stockmodifier/:idStock' element={<StockModifier/>}/>
@@ -51,7 +63,8 @@ function App() {
       </BrowserRouter>
     </AuthProvider>
     </>
-  ) }
+    )
+  }
   else {
     return ( 
       <AuthProvider>
@@ -59,7 +72,7 @@ function App() {
       </AuthProvider>
     )
   }
-}
+}}
 
 export default App
 
