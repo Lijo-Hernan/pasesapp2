@@ -21,16 +21,13 @@ const Login = () => {
         e.preventDefault();
         if (registrado) {
             auth.logIn(correo, password);
-            iniciarTiempoSesion();
         } else {
             auth.registrar(correo, password, apellido);
-            iniciarTiempoSesion();
         }
     }
 
     const handleGoogle = () => {
         auth.logInGoogle().then(() => {
-            iniciarTiempoSesion();
         }).catch((error) => {
             console.error("Error al iniciar sesión con Google:", error);
         });
@@ -49,12 +46,6 @@ const Login = () => {
                                 No se compartirá su información.
                             </Form.Text>
                         </Form.Group>
-                        {/* {!registrado &&
-                            <Form.Group className="mb-3" controlId="apellido">
-                                <Form.Label>Apellido y Nombre</Form.Label>
-                                <Form.Control type="text" placeholder="Apellido y Nombre" value={apellido} onChange={(e) => setApellido(e.target.value)} />
-                            </Form.Group>
-                        } */}
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Contraseña</Form.Label>
                             <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
