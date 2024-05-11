@@ -3,11 +3,24 @@ import { Timestamp, updateDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import classes from "./finCaso.module.css";
 import Swal from 'sweetalert2'
+import { useAuth } from '../../../context/authContext';
 
 const FinCaso = ({ equipo, onClick }) => {
+
+    const auth = useAuth();
+
     const { register, handleSubmit } = useForm();
 
     const eqDoc = doc(db, "equipos", equipo.id);
+
+
+    let nombreParaMostrar
+
+    if (auth.usuario.displayName) {
+        nombreParaMostrar=auth.usuario.displayName
+    }else {
+        nombreParaMostrar=auth.usuario.email
+    }
 
     const handleFinishCase = () => {
             onClick();
@@ -15,8 +28,7 @@ const FinCaso = ({ equipo, onClick }) => {
 
     const reinCaso = async (datos)=> {
         try {
-            await updateDoc (eqDoc, {tecnico:datos.apellido, reporte:Timestamp.fromDate(new Date()), caso:'', descripcion:''})
-        
+            await updateDoc (eqDoc, {tecnico:datos.apellido, reporte:Timestamp.fromDate(new Date()), caso:'', descripcion:'', logfinDeCaso:nombreParaMostrar, logReporte:''})
             await Swal.fire({
                 title: `Reinicio de ${equipo.nombre} registrado`,
                 icon: 'success',
