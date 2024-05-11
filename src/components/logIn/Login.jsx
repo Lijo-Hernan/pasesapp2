@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import classes from './login.module.css'
-import { Stack, Container, Form, Button } from 'react-bootstrap';
+import { Stack, Container, Form, Offcanvas, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useAuth } from '../../context/authContext';
+import Recupero from './recupero/Recupero';
+import classes from './login.module.css'
+
+
 
 const Login = () => {
     const auth = useAuth();
-    const iniciarTiempoSesion = auth.iniciarTiempoSesion;
 
     const [registrado, setRegistrado] = useState(true);
     const [correo, setCorreo] = useState('');
@@ -35,6 +37,12 @@ const Login = () => {
         });
     };
 
+    const [showOffcanvas, setShowOffcanvas] = useState(false);
+    
+    const handleClose = () => setShowOffcanvas(false);
+    const handleShow = () => setShowOffcanvas(true);
+
+
     return (
         <>
         <div className={classes.login__body}>
@@ -51,7 +59,7 @@ const Login = () => {
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Dirección de Email</Form.Label>
                                 <Form.Control type="email" placeholder="Email" value={correo} onChange={(e) => setCorreo(e.target.value)} />
-                                <Form.Text className="text-muted">
+                                <Form.Text className={classes.form__p}>
                                     No se compartirá su información.
                                 </Form.Text>
                             </Form.Group>
@@ -74,11 +82,20 @@ const Login = () => {
                         <Button variant="primary" onClick={() => setRegistrado(!registrado)}>
                             {registrado ? "¿No tenes cuenta? Regístrate" : "¿Tienes cuenta? Inicia sesión"}
                         </Button>
+                        <Button variant="primary" onClick={handleShow}>
+                            ¿Olvidaste tu contraseña?
+                        </Button>
                     </span>
                     </section>
                 </Stack>
             </Container>
         </div>
+
+        <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
+            <Offcanvas.Body>
+                <Recupero/>
+            </Offcanvas.Body>
+        </Offcanvas>
         </>
     );
 };
