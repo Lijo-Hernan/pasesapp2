@@ -6,11 +6,14 @@ import {collection, addDoc, Timestamp, updateDoc, getDoc, doc} from 'firebase/fi
 import {db} from '../../firebase/config'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { useAuth } from '../../../context/authContext';
 
 
 const ItemDetail = ({eq}) => {
     const [apellido, setApellido] = useState('');
     // const [eqRep, setEqRep] =useState('');
+
+    const auth = useAuth();
 
     const navegar = useNavigate()
 
@@ -26,6 +29,14 @@ const ItemDetail = ({eq}) => {
     const reportado = watch('pregunta')
 
     const eqDoc = doc(db, 'equipos', id)
+
+    let nombreParaMostrar
+
+    if (auth.usuario.displayName) {
+        nombreParaMostrar=auth.usuario.displayName
+    }else {
+        nombreParaMostrar=auth.usuario.email
+    } 
 
     useEffect (()=>{
 
@@ -45,8 +56,8 @@ const ItemDetail = ({eq}) => {
 
 const onSubmit = (datos)=> {
     const reporte =collection (db,'reportes')
-    addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date())} );
-    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), ingreso:datos.ingreso, caso:datos.caso});
+    addDoc (reporte, {datos, fecha:Timestamp.fromDate(new Date()), logReporte: nombreParaMostrar} );
+    updateDoc (eqDoc, {descripcion:datos.descripcion, 'reporte':Timestamp.fromDate(new Date()), ingreso:datos.ingreso, caso:datos.caso, logReporte: nombreParaMostrar});
 
     Swal.fire({
         title: `Se registra evento para ${eq.nombre}`,
@@ -93,7 +104,7 @@ const onSubmit = (datos)=> {
                     <input type="checkbox" id="pregunta" {...register ('pregunta')} className={classes.checkbox}/>
                 </span> 
                 <span>
-                    <label htmlFor="caso">Numbero de caso: </label>
+                    <label htmlFor="caso">Numero de caso: </label>
                     <input type="text" id='caso' placeholder='caso' {...register('caso')}/>
                 </span>
 

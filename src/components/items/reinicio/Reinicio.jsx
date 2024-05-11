@@ -3,9 +3,12 @@ import {Timestamp, updateDoc, doc} from 'firebase/firestore'
 import {db} from '../../firebase/config'
 import classes from './reinicio.module.css'
 import Swal from 'sweetalert2'
+import { useAuth } from '../../../context/authContext';
 
 
 const NuevoReinicio = ({equipo, onClick}) => {
+
+    const auth = useAuth();
 
     const {register, handleSubmit } = useForm();
     
@@ -15,9 +18,17 @@ const NuevoReinicio = ({equipo, onClick}) => {
             onClick(); 
         };
 
+    let nombreParaMostrar
+
+    if (auth.usuario.displayName) {
+        nombreParaMostrar=auth.usuario.displayName
+    }else {
+        nombreParaMostrar=auth.usuario.email
+    }    
+
     const reinicio = async (datos) => {
         try {
-            await updateDoc(eqDoc, { tecnico: datos.apellido, reinicio: Timestamp.fromDate(new Date()) });
+            await updateDoc(eqDoc, { tecnico: datos.apellido, reinicio: Timestamp.fromDate(new Date()), logReinicio: nombreParaMostrar});
         
             await Swal.fire({
                 title: `Reinicio de ${equipo.nombre} registrado`,

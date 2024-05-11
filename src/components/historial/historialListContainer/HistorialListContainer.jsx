@@ -26,8 +26,6 @@ const HistorialListContainer = ({introduccion}) => {
     reportes.filter(reporte => reporte.datos.equipo === categoria) : reportes
 
 
-console.log(repFiltrado, categoria)
-
     return (
         <div className={classes.container}>
             <HistorialNav/>

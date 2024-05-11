@@ -8,9 +8,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
+import { useAuth } from '../../../context/authContext';
 
 const StockModifier = () => {
     const [stockItem, setStockItem]= useState(null)
+
+    const auth = useAuth();
 
     const navegar = useNavigate()
 
@@ -36,7 +39,13 @@ const StockModifier = () => {
 
     },[idStock])
 
+    let nombreParaMostrar
 
+    if (auth.usuario.displayName) {
+        nombreParaMostrar=auth.usuario.displayName
+    }else {
+        nombreParaMostrar=auth.usuario.email
+    } 
 
     const stockActual = async(data) => {
         Swal.fire({
@@ -52,7 +61,7 @@ const StockModifier = () => {
             if (result.isConfirmed) {
                 window.location.href='/'
             }})
-        await updateDoc (productDoc, {stock:data.stock, fecha:Timestamp.fromDate(new Date()), Apellido:data.apellido})
+        await updateDoc (productDoc, {stock:data.stock, fecha:Timestamp.fromDate(new Date()), Apellido:data.apellido, logStock: nombreParaMostrar})
     }
     
     return (
@@ -64,7 +73,7 @@ const StockModifier = () => {
                 <h3>en cantidad de {stockItem.presentacion}</h3>
                     <form onSubmit={handleSubmit(stockActual)}>
                         <article className={classes.form__data}>
-                            <label htmlFor="stock">Nuevo Sotck:{" "}
+                            <label htmlFor="stock">Nuevo Stock:{" "}
                                 <input type="number" id="stock" min="0" required placeholder={`Valor actual: ${stockItem.stock}`} autoComplete="on"{...register("stock")}/>
                             </label>
                             <label htmlFor="apellido">Apellido:{" "}
