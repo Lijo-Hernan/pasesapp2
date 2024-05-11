@@ -124,7 +124,6 @@ const handlePassword = async (email) => {
         window.location.href='/'
     };
 
-
     const iniciarTiempoSesion = () => {
         
         // const tiempoEspera = 3 * 3600 * 1000;
