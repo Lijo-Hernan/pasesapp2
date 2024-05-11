@@ -5,7 +5,8 @@ import { createUserWithEmailAndPassword,
         GoogleAuthProvider,
         signInWithPopup,
         signOut,
-        onAuthStateChanged
+        onAuthStateChanged,
+        sendPasswordResetEmail
 } from "firebase/auth";
 import Swal from 'sweetalert2'
 
@@ -42,7 +43,6 @@ export function AuthProvider ({children}) {
     };
 
     const logIn = async (email, password) => {
-
     try {
         const resp = await signInWithEmailAndPassword(auth, email, password);
         iniciarTiempoSesion()
@@ -57,7 +57,7 @@ export function AuthProvider ({children}) {
         } else if (errorCode === 'auth/invalid-login-credentials') {
             Swal.fire({
                 title: `Error de credenciales`,
-                text: 'Verifique sus datos o registrese ',
+                text: 'Verificá tus datos o registrate ',
                 icon: 'error',
                 confirmButtonText: `<a style={color:'white'}href="/">Cerrar</a>`,
                 background: 'red',
@@ -80,6 +80,40 @@ export function AuthProvider ({children}) {
         }
 };
 
+const handlePassword = async (email) => {
+    try {
+        await sendPasswordResetEmail(auth, email);
+        Swal.fire({
+            title: `Se envió mail con exito`,
+            text: 'Verificá tu casilla de correo no deseado',
+            icon: 'success',
+            confirmButtonText: `Cerrar`,
+            background: 'green',
+            color: 'white',
+            confirmButtonColor:'blue',
+            width:'20em'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href='/'
+            }})
+
+        } catch (error) {
+        console.error(error);
+        Swal.fire({
+            title: `Error al enviar el correo electrónico de recuperación de contraseña.`,
+            icon: 'error',
+            confirmButtonText: `Cerrar`,
+            background: 'red',
+            color: 'white',
+            confirmButtonColor:'black',
+            width:'20em'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href='/'
+            }})
+        }
+}
+
     const logInGoogle = async () => {
         const respGoogle = new GoogleAuthProvider();
         return await signInWithPopup(auth, respGoogle);
@@ -89,6 +123,7 @@ export function AuthProvider ({children}) {
         const resp = await signOut(auth);
         window.location.href='/'
     };
+
 
     const iniciarTiempoSesion = () => {
         
@@ -107,7 +142,7 @@ export function AuthProvider ({children}) {
 
     return (
         <authContext.Provider value={
-            { registrar, logIn, logInGoogle, logOut, iniciarTiempoSesion, usuario }
+            { registrar, logIn, logInGoogle, logOut, iniciarTiempoSesion, handlePassword, usuario }
         }>
             {children}
         </authContext.Provider>

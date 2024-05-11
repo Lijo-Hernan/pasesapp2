@@ -16,9 +16,11 @@
     border-radius: 20px;
     padding: 1rem;
     width: 90%;
-    background: rgb(128, 128, 128, 0.8);
+    background: rgb(128, 128, 128, 0.9);
     display: flex;
     flex-direction: column;
+    color: white;
+    text-shadow: 6px 1px 11px rgba(255,255,255,0.55);
 }
 
 .img{
@@ -35,6 +37,12 @@
 .form__section {
     font-size: 1rem;
     font-weight: bold;
+    color: white;
+}
+
+.form__p{
+    color: white;
+    
 }
 .linea{
     width: 100%;
@@ -61,4 +69,8 @@
     height: 100%;
     flex-direction: column;
     justify-content: space-around;
+}
+.canvasBody {
+    border-radius: 25px;
+    background-color: #3f3f3f;
 }
