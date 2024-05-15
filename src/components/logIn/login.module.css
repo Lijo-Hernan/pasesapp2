@@ -55,6 +55,7 @@
 .login {
     width: 40%;
     margin: 0 1.5rem;
+
 }
 
 .opciones {
@@ -73,4 +74,42 @@
 .canvasBody {
     border-radius: 25px;
     background-color: #3f3f3f;
+}
+
+
+@media (max-width: 910px) {
+    .login__body {
+        background-size: contain;
+        background-repeat: repeat; 
+    }
+
+    .img{
+        width: 15vh;
+    } 
+    .form__group {
+        flex-direction: column;
+    }
+    .bienvenida, .linea {
+        display: none;
+    }
+    .form__group {
+        width: 100%;
+    }
+    .form__section {
+        width: 100%;
+    }
+    .login {
+        width: 100%;
+        margin: 0;
+    }
+
+    .opciones {
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .botones {
+        width: 100%;
+        gap: 1rem;
+    }
+
 }
