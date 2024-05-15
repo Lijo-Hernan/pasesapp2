@@ -130,7 +130,7 @@ const handlePassword = async (email) => {
         const tiempoEspera = 120000; // 2 min  en milisegundos
         
         const tiempoSesion = setInterval(() => {
-            const user = firebase.auth().currentUser;
+            const user = auth.currentUser;
             if (user) {
                 logOut();
             } else {
