@@ -126,8 +126,8 @@ const handlePassword = async (email) => {
 
     const iniciarTiempoSesion = () => {
         
-        // const tiempoEspera = 3 * 3600 * 1000;
-        const tiempoEspera = 120000; // 2 min  en milisegundos
+        const tiempoEspera = 3 * 3600 * 1000; // 3 horas en milisegundos
+        // const tiempoEspera = 120000; // 2 min  en milisegundos
         
         const tiempoSesion = setInterval(() => {
             const user = auth.currentUser;
