@@ -26,7 +26,7 @@ const Login = () => {
         if (registrado) {
             auth.logIn(correo, password);
         } else {
-            auth.registrar(correo, password, apellido);
+            auth.registrar(correo, password);
         }
     }
 
