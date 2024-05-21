@@ -6,7 +6,8 @@ import { createUserWithEmailAndPassword,
         signInWithPopup,
         signOut,
         onAuthStateChanged,
-        sendPasswordResetEmail
+        sendPasswordResetEmail,
+        sendEmailVerification,
 } from "firebase/auth";
 import Swal from 'sweetalert2'
 
@@ -39,14 +40,43 @@ export function AuthProvider ({children}) {
 
     const registrar = async (email, password) => {
         const resp = await createUserWithEmailAndPassword(auth, email, password);
-        iniciarTiempoSesion()
+        const user = resp.user;
+        await sendEmailVerification(user);
+        await auth.signOut();
+        Swal.fire({
+            title: `Registro exitoso`,
+            text: 'Revisa tu correo e iniciá sesion',
+            icon: 'success',
+            confirmButtonText: `<a style={color:'white'}href="/">Cerrar</a>`,
+            background: 'green',
+            color: 'white',
+            confirmButtonColor:'black',
+            width:'20em'
+        })
+        
     };
 
     const logIn = async (email, password) => {
     try {
         const resp = await signInWithEmailAndPassword(auth, email, password);
+        const user = resp.user;
+
+        if(user.emailVerified){
         iniciarTiempoSesion()
-        } catch (error) {
+        } else {
+            await auth.signOut();
+            Swal.fire({
+                title: `Email no verificado`,
+                text: 'Revisa tu correo',
+                icon: 'error',
+                confirmButtonText: `<a style={color:'white'}href="/">Cerrar</a>`,
+                background: 'red',
+                color: 'white',
+                confirmButtonColor:'black',
+                width:'20em'
+            })
+        }
+    } catch (error) {
     
         const errorCode = error.code;
         const errorMessage = error.message;
