@@ -5,13 +5,20 @@
     background-color: rgb(253, 242, 33);
     color: black;
     border-top: 2px solid black;
+    justify-content: space-around;
     /* position: fixed; */
     /* bottom: 0 */
 }
 
 .footer__title {
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    align-self: center;
+    width: 100%;
+}
+.footer__mail{
+    /* display: flex; */
+    /* justify-content: center; */
     align-self: center;
     width: 100%;
 }

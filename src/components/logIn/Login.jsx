@@ -67,7 +67,7 @@ const Login = () => {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button variant={registrado ? "primary" : "warning"} type="submit">
                                 {registrado ? "Iniciar sesión" : "Registrarse"}
                             </Button>
                     </Form>
@@ -79,7 +79,7 @@ const Login = () => {
                         <Button variant="primary" onClick={handleGoogle}>
                             Acceder con Google
                         </Button>
-                        <Button variant="primary" onClick={() => setRegistrado(!registrado)}>
+                        <Button variant={registrado ? "primary" : "warning"} onClick={() => setRegistrado(!registrado)}>
                             {registrado ? "¿No tenes cuenta? Regístrate" : "¿Tienes cuenta? Inicia sesión"}
                         </Button>
                         <Button variant="primary" onClick={handleShow}>
