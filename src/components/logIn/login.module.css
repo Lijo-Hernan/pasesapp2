@@ -12,15 +12,27 @@
     background-repeat: no-repeat; 
 
 }
+
 .form__container {
     border-radius: 20px;
     padding: 1rem;
     width: 90%;
-    background: rgb(128, 128, 128, 0.9);
+    background: rgb(32, 32, 32, 0.9);
     display: flex;
     flex-direction: column;
     color: white;
-    text-shadow: 6px 1px 11px rgba(255,255,255,0.55);
+    text-shadow: 6px 1px 11px rgba(255,255,255,0.40);
+}
+
+.form__reg {
+    border-radius: 20px;
+    padding: 1rem;
+    width: 90%;
+    background: rgba(128, 128, 128, 0.9);
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-shadow: 6px 1px 11px rgba(255,255,255,0.40);
 }
 
 .img{
@@ -56,6 +68,11 @@
     width: 40%;
     margin: 0 1.5rem;
 
+}
+
+.registro {
+    width: 40%;
+    margin: 0 1.5rem;
 }
 
 .opciones {

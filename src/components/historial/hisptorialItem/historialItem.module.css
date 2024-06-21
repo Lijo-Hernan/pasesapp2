@@ -3,8 +3,8 @@
     flex-direction: column;
     padding: 3vh;
     align-items: first baseline;
-    background-color:  rgba(185, 186, 187);
-    color: black;
+    background-color:  rgb(133, 132, 132);
+    color: white;
     border-radius: 25px;
     min-height: 40vh;
     width: 90%;
@@ -14,7 +14,7 @@
     align-self: center;
 }
 .item__titulo {
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px white;
     width: 100%;
     justify-self: center;
     margin-bottom: 2rem;

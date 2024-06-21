@@ -4,8 +4,8 @@
     padding: 3vh;
     gap: 1.5vh;
     justify-items: center;
-    background-color:  rgb(185, 186, 187);
-    color: black;
+    background-color:  rgb(145, 145, 145);
+    color: white;
     border-radius: 25px;
     margin: 1vh;
     overflow: hidden;
@@ -13,7 +13,7 @@
 }
 
 .stockContainer__intro {
-    border-bottom: solid black 2px;
+    border-bottom: solid white 2px;
     justify-self: center;
     width: 100%;
 }

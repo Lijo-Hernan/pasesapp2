@@ -46,7 +46,7 @@ const Login = () => {
     return (
         <>
         <div className={classes.login__body}>
-            <Container className={classes.form__container}>
+            <Container className={registrado ? classes.form__container : classes.form__reg}>
                 <span className={classes.form__img}>
                 <img src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/EscudoPiroSinFondo.png?alt=media&token=2486eaa3-05a0-414e-a419-524473e218ce' 
                     alt="Pirovano" className={classes.img}/>

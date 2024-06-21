@@ -3,10 +3,10 @@
     flex-direction: column;
     padding: 3vh;
     align-items: first baseline;
-    background-color:  rgba(185, 186, 187);
-    color: black;
+    background-color:  rgb(133, 132, 132);
+    color: white;
     border-radius: 25px;
-    min-height: 60vh;
+    /* min-height: 60vh; */
     width: 90%;
     margin: 1vh;
     position: relative;
@@ -14,10 +14,9 @@
 }
 .item__titulo {
     display: flex;
-    border-bottom: solid 2px black;
+    border-bottom: solid 2px white;
     width: 100%;
-    /* height: 10%; */
-    /* justify-self: center; */
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
     /* border: solid red 3px; */
@@ -27,8 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: first baseline;
-    gap: 0.5rem;
-    margin: 3rem 0;
+    /* gap: 0.5rem; */
+    margin: 0.5rem 0;
 }
 
 .item__p {
@@ -40,7 +39,7 @@
     object-fit: contain;
 }
 .item__estado {
-    height: 3rem;
+    height: 4rem;
 }
 
 /* .estado {

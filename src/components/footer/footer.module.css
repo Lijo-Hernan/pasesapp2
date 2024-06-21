@@ -29,3 +29,9 @@
     width: auto;
 }
 
+@media (max-width: 910px) {
+    .footer__title {
+        display: none;
+    }
+}
+
