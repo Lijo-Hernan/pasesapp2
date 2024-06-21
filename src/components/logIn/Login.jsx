@@ -15,6 +15,9 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [apellido, setApellido] = useState('');
 
+    const logo = <img className={classes.logo} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/google-logo.png?alt=media&token=989c094d-4946-4dd2-b7af-56e25115ebc7' 
+                    alt='google'/>
+
     useEffect(() => {
         setCorreo('');
         setPassword('');
@@ -77,7 +80,7 @@ const Login = () => {
                         <hr className={classes.linea}/>
                     <span className={classes.botones}>
                         <Button variant="primary" onClick={handleGoogle}>
-                            Acceder con Google
+                        Acceder con Google  {logo}
                         </Button>
                         <Button variant={registrado ? "primary" : "warning"} onClick={() => setRegistrado(!registrado)}>
                             {registrado ? "¿No tenes cuenta? Regístrate" : "¿Tienes cuenta? Inicia sesión"}

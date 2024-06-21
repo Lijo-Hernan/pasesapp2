@@ -35,6 +35,11 @@
     text-shadow: 6px 1px 11px rgba(255,255,255,0.40);
 }
 
+.logo {
+    height: 1.3rem;
+    justify-self: end;
+}
+
 .img{
     width: 30vh;
 } 
