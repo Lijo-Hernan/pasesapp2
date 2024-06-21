@@ -5,16 +5,16 @@ import StockListContainer from '../../stock/stockListContainer/StockListContaine
 
 const itemList = ({equipos}) => {
     return (
-        <div>
-        <section className={classes.listContainer}>
+        <div className={classes.listContainer}>
+        <section >
             {equipos.map((equipo)=> (
                 <Item 
                     key = {equipo.id}
                     equipo ={equipo}
                 />
             ))}
-        <StockListContainer/>
         </section>
+        <StockListContainer/>
         </div>
     );
 };

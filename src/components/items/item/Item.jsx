@@ -35,7 +35,10 @@ const Item = ({equipo}) => {
     return (
     <>
         <article className={classes.item__card}>
-            <h2 className={classes.item__titulo}>{equipo.nombre}</h2>
+            <span className={classes.item__titulo}>
+                <h2 className={classes.in__titulo}>{equipo.nombre}</h2>
+                <span className={classes.item__estado}>{estado}</span>
+            </span>
                 {equipo.descripcion === "" ?
                     <div className={classes.item__inner}>
                         <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
@@ -48,7 +51,6 @@ const Item = ({equipo}) => {
                         </Button>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
-            <span className={classes.item__estado}>{estado}</span>
         </article>
         <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
 

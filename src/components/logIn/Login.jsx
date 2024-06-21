@@ -15,6 +15,9 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [apellido, setApellido] = useState('');
 
+    const logo = <img className={classes.logo} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/google-logo.png?alt=media&token=989c094d-4946-4dd2-b7af-56e25115ebc7' 
+                    alt='google'/>
+
     useEffect(() => {
         setCorreo('');
         setPassword('');
@@ -46,7 +49,7 @@ const Login = () => {
     return (
         <>
         <div className={classes.login__body}>
-            <Container className={classes.form__container}>
+            <Container className={registrado ? classes.form__container : classes.form__reg}>
                 <span className={classes.form__img}>
                 <img src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/EscudoPiroSinFondo.png?alt=media&token=2486eaa3-05a0-414e-a419-524473e218ce' 
                     alt="Pirovano" className={classes.img}/>
@@ -67,7 +70,7 @@ const Login = () => {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button variant={registrado ? "primary" : "warning"} type="submit">
                                 {registrado ? "Iniciar sesión" : "Registrarse"}
                             </Button>
                     </Form>
@@ -77,9 +80,9 @@ const Login = () => {
                         <hr className={classes.linea}/>
                     <span className={classes.botones}>
                         <Button variant="primary" onClick={handleGoogle}>
-                            Acceder con Google
+                        Acceder con Google  {logo}
                         </Button>
-                        <Button variant="primary" onClick={() => setRegistrado(!registrado)}>
+                        <Button variant={registrado ? "primary" : "warning"} onClick={() => setRegistrado(!registrado)}>
                             {registrado ? "¿No tenes cuenta? Regístrate" : "¿Tienes cuenta? Inicia sesión"}
                         </Button>
                         <Button variant="primary" onClick={handleShow}>
