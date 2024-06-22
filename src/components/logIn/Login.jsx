@@ -15,7 +15,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [apellido, setApellido] = useState('');
 
-    const logo = <img className={classes.logo} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/google-logo.png?alt=media&token=989c094d-4946-4dd2-b7af-56e25115ebc7' 
+    const logo = <img className={classes.logo} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/logoGoo.png?alt=media&token=764ba6d3-b867-46aa-9911-96c226f83129' 
                     alt='google'/>
 
     useEffect(() => {
