@@ -3,7 +3,7 @@
     grid-template-columns: 50% 50%;
     gap: 10px;
     width: auto;
-    align-items: center;
+    /* align-items: center; */
     margin: 0.5vh;
     margin-top: 2.5vh;
     overflow: hidden;

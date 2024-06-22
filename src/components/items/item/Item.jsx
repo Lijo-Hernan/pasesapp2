@@ -11,10 +11,10 @@ const Item = ({equipo}) => {
     let estado;
 
     if (equipo.descripcion === "") {
-        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/checkMark.png?alt=media&token=6146dce1-56c3-4eeb-9dc5-389099690f6d' 
+        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/tildeSinFondo.png?alt=media&token=6bfda763-b451-4128-bc5b-c4837592ed24' 
         alt='checkMark' />;
     }else {
-        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/xMark.png?alt=media&token=8144ca63-bdb0-40cc-98d6-8530def2715c' 
+        estado = <img className={classes.estado} src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/xsinFondo.png?alt=media&token=8955479b-fd5e-4792-b7ba-8511e6b98361' 
         alt='xMArk' />;
     }
 
@@ -35,7 +35,10 @@ const Item = ({equipo}) => {
     return (
     <>
         <article className={classes.item__card}>
-            <h2 className={classes.item__titulo}>{equipo.nombre}</h2>
+            <span className={classes.item__titulo}>
+                <h2 className={classes.in__titulo}>{equipo.nombre}</h2>
+                <span className={classes.item__estado}>{estado}</span>
+            </span>
                 {equipo.descripcion === "" ?
                     <div className={classes.item__inner}>
                         <Link to={`reporte/${equipo.id}`} className='btn btn-danger'>Reportar un problema</Link>
@@ -48,7 +51,6 @@ const Item = ({equipo}) => {
                         </Button>
                     </div>
                     : <ItemReporte equipo={equipo}/>}
-            <span className={classes.item__estado}>{estado}</span>
         </article>
         <Offcanvas show={showOffcanvas} onHide={handleClose} className={classes.canvasBody}>
 

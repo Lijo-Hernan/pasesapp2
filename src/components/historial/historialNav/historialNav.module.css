@@ -3,14 +3,12 @@
     width: 100%;
     height: fit-content;
     flex-wrap: nowrap;
-    text-decoration: none;
 }
 .header__cont {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-content: center;
-    background-color: rgba(146, 146, 146, 0.911);
 }
 .headerImg__cont {
     width: auto;
@@ -55,11 +53,16 @@
 }
 
 .navbar__btn{
-    text-shadow: 2px 2px 2px black;
+    /* text-shadow: 2px 2px 2px black; */
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-style: normal;
-    box-shadow: 2px 3px 3px black;
+    /* box-shadow: 2px 3px 3px black; */
+    text-decoration: none;
+    color: black;
+    border: black solid 2px;
+    padding: 0.3rem;
+    border-radius: 5px;
 }
 
 @media (max-width: 970px) {

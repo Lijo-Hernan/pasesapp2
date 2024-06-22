@@ -29,7 +29,7 @@ const HistorialListContainer = ({introduccion}) => {
     return (
         <div className={classes.container}>
             <HistorialNav/>
-            <h2>{introduccion}</h2>
+            <h2><u>{introduccion}</u></h2>
             <div className={classes.container__card}>
                 {reportes.length === 0 ? <Loader/> : <HistorialList reportes={repFiltrado}/>}
             </div>

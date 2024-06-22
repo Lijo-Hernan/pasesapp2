@@ -32,9 +32,9 @@ const HistorialNav = () => {
             <span className={classes.header__cont}>
                 <nav className={classes.nav}>
                     <div className={classes.navbar__list}>
-                        <Link to={`/historial`} className={`${classes.navbar__btn} btn btn-secondary btn-lg`}>Todos los reportes</Link>
+                        <Link to={`/historial`} className={classes.navbar__btn}>Todos los reportes</Link>
                         {categorias.map(cat => {
-                            return <Link key={cat.id} to={`/historial/${cat.nombre}`} className={`${classes.navbar__btn} btn btn-secondary btn-lg`}>
+                            return <Link key={cat.id} to={`/historial/${cat.nombre}`} className={classes.navbar__btn}>
                                     {cat.nombre}</Link>
                         })}
                     </div>
