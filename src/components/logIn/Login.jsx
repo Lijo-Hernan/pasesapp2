@@ -53,7 +53,7 @@ const Login = () => {
                 <span className={classes.form__img}>
                 <img src='https://firebasestorage.googleapis.com/v0/b/pasesapp-d01af.appspot.com/o/EscudoPiroSinFondo.png?alt=media&token=2486eaa3-05a0-414e-a419-524473e218ce' 
                     alt="Pirovano" className={classes.img}/>
-                    <h2 className={classes.intro}>Sistema de pases de guardia, tomografia computada</h2>
+                <span className={classes.intro}><h2> Sistema de pases de guardia</h2><h3> TOMOGRAFIA COMPUTADA</h3></span>
                 </span>
                 <Stack className={classes.form__group}>
                     <section className={classes.login}>
